@@ -1,0 +1,40 @@
+var x = 0;
+for (var i = 0; i < Website.value.length; i++)
+{
+  
+if(Website.value.length > 0)
+{
+  if(WhoSAtRisk[i].valid){
+    x += parseInt(WhoSAtRisk[i].value,10);
+  }
+  if(MissionArea[i].valid){
+    x += parseInt(MissionArea[i].value,10);
+  }
+  if(Visibility[i].valid){
+    x += parseInt(Visibility[i].value,10);
+  }
+  if(Templates[i].valid){
+    x += parseInt(Templates[i].value,10);
+  }
+  if(PageCountScore[i].valid){
+    x += parseInt(PageCountScore[i].value,10);
+  }
+  if(TotalOfMonthlyUses[i].valid){
+    x += parseInt(TotalOfMonthlyUses[i].value,10);
+  }
+  if(Errors[i].valid){
+    x += parseInt(Errors[i].value,10);
+  }
+  
+  
+//x = parseInt(WhoSAtRisk[i].value,10) + parseInt(MissionArea[i].value,10) + parseInt(Visibility[i].value,10) + parseInt(Templates[i].value,10) + parseInt(PageCountScore[i].value,10) + parseInt(TotalOfMonthlyUses[i].value,10) + parseInt(Errors[i].value,10);
+
+}
+  
+ADAScore[i].value = x;
+}
+
+if(ScoringFieldsRepeat.itemRemoved || ScoringFieldsRepeat.itemAdded){
+  var x = 0;
+}
+
