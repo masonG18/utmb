@@ -1,9 +1,9 @@
 var x, who, area, vis, templ, pc, uses, err;
-for (var i = 0; i < Website.value.length; i++)
-{
+
+for (var i = 0; i < Website.value.length; i++) {
   x = 0;
-if(Website.value.length > 0)
-{
+  if(Website.value.length > 0) {
+    
   /*who = parseInt(WhoSAtRisk[i].value,10);
   area = parseInt(MissionArea[i].value,10);
   vis= parseInt(Visibility[i].value,10);
@@ -12,34 +12,29 @@ if(Website.value.length > 0)
   uses = parseInt(TotalOfMonthlyUses[i].value,10);
   err = parseInt(Errors[i].value,10);
   */
-  if((who = parseInt(WhoSAtRisk[i].value,10)) > 0){
     
-    x += who;
-  }
-  if((area = parseInt(MissionArea[i].value,10)) > 0){
+    if((who = parseInt(WhoSAtRisk[i].value,10)) > 0){
+      x += who;
+    }
+    if((area = parseInt(MissionArea[i].value,10)) > 0){
+      x += area;
+    }
+    if((vis = parseInt(Visibility[i].value,10)) > 0){
+      x += vis;
+    }
+    if((templ = parseInt(Templates[i].value,10)) > 0){
+      x += templ;
+    }
+    if((pc = parseInt(PageCountScore[i].value,10))> 0){
+      x += pc;
+    }
+    if((uses = parseInt(TotalOfMonthlyUses[i].value,10)) > 0){
+      x += uses;
+    }
+    if((err = parseInt(Errors[i].value,10)) > 0){
+      x += err;
+    }
     
-    x += area;
-  }
-  if((vis = parseInt(Visibility[i].value,10)) > 0){
-    
-    x += vis;
-  }
-  if((templ = parseInt(Templates[i].value,10)) > 0){
-    
-    x += templ;
-  }
-  if((pc = parseInt(PageCountScore[i].value,10))> 0){
-    
-    x += pc;
-  }
-  if((uses = parseInt(TotalOfMonthlyUses[i].value,10)) > 0){
-    
-    x += uses;
-  }
-  if((err = parseInt(Errors[i].value,10)) > 0){
-    
-    x += err;
-  }
   /*
   if(parseInt(MissionArea[i].value,10) > 0){
     x += parseInt(MissionArea[i].value,10);
@@ -63,9 +58,8 @@ if(Website.value.length > 0)
   
 //x += parseInt(WhoSAtRisk[i].value,10) + parseInt(MissionArea[i].value,10) + parseInt(Visibility[i].value,10) + parseInt(Templates[i].value,10) + parseInt(PageCountScore[i].value,10) + parseInt(TotalOfMonthlyUses[i].value,10) + parseInt(Errors[i].value,10);
 
-}
-  
-ADAScore[i].value = x;
+  }
+  ADAScore[i].value = x;
 }
 
 if(ScoringFieldsRepeat.itemRemoved /*|| ScoringFieldsRepeat.itemAdded*/){
