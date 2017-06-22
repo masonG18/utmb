@@ -1,40 +1,74 @@
-var x = 0;
+var x, who, area, vis, templ, pc, uses, err;
 for (var i = 0; i < Website.value.length; i++)
 {
-  
+  x = 0;
 if(Website.value.length > 0)
 {
-  if(WhoSAtRisk[i].valid){
-    x += parseInt(WhoSAtRisk[i].value,10);
+  /*who = parseInt(WhoSAtRisk[i].value,10);
+  area = parseInt(MissionArea[i].value,10);
+  vis= parseInt(Visibility[i].value,10);
+  templ = parseInt(Templates[i].value,10);
+  pc = parseInt(PageCountScore[i].value,10);
+  uses = parseInt(TotalOfMonthlyUses[i].value,10);
+  err = parseInt(Errors[i].value,10);
+  */
+  if((who = parseInt(WhoSAtRisk[i].value,10)) > 0){
+    
+    x += who;
   }
-  if(MissionArea[i].valid){
+  if((area = parseInt(MissionArea[i].value,10)) > 0){
+    
+    x += area;
+  }
+  if((vis = parseInt(Visibility[i].value,10)) > 0){
+    
+    x += vis;
+  }
+  if((templ = parseInt(Templates[i].value,10)) > 0){
+    
+    x += templ;
+  }
+  if((pc = parseInt(PageCountScore[i].value,10))> 0){
+    
+    x += pc;
+  }
+  if((uses = parseInt(TotalOfMonthlyUses[i].value,10)) > 0){
+    
+    x += uses;
+  }
+  if((err = parseInt(Errors[i].value,10)) > 0){
+    
+    x += err;
+  }
+  /*
+  if(parseInt(MissionArea[i].value,10) > 0){
     x += parseInt(MissionArea[i].value,10);
   }
-  if(Visibility[i].valid){
+  if(parseInt(Visibility[i].value,10) > 0){
     x += parseInt(Visibility[i].value,10);
   }
-  if(Templates[i].valid){
+  if(parseInt(Templates[i].value,10) > 0){
     x += parseInt(Templates[i].value,10);
   }
-  if(PageCountScore[i].valid){
+  if(parseInt(PageCountScore[i].value,10) > 0){
     x += parseInt(PageCountScore[i].value,10);
   }
-  if(TotalOfMonthlyUses[i].valid){
+  if(parseInt(TotalOfMonthlyUses[i].value,10) > 0){
     x += parseInt(TotalOfMonthlyUses[i].value,10);
   }
-  if(Errors[i].valid){
+  if(parseInt(Errors[i].value,10) > 0){
     x += parseInt(Errors[i].value,10);
   }
+  */
   
-  
-//x = parseInt(WhoSAtRisk[i].value,10) + parseInt(MissionArea[i].value,10) + parseInt(Visibility[i].value,10) + parseInt(Templates[i].value,10) + parseInt(PageCountScore[i].value,10) + parseInt(TotalOfMonthlyUses[i].value,10) + parseInt(Errors[i].value,10);
+//x += parseInt(WhoSAtRisk[i].value,10) + parseInt(MissionArea[i].value,10) + parseInt(Visibility[i].value,10) + parseInt(Templates[i].value,10) + parseInt(PageCountScore[i].value,10) + parseInt(TotalOfMonthlyUses[i].value,10) + parseInt(Errors[i].value,10);
 
 }
   
 ADAScore[i].value = x;
 }
 
-if(ScoringFieldsRepeat.itemRemoved || ScoringFieldsRepeat.itemAdded){
+if(ScoringFieldsRepeat.itemRemoved /*|| ScoringFieldsRepeat.itemAdded*/){
   var x = 0;
 }
 
