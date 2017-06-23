@@ -1,34 +1,38 @@
-//var xx, who, area, vis, templ, pc, uses, err;
-	//var y = 0;
-	//ADAScore1.value = makeInt(WhoSAtRiskk);
+var x, who, area, vis, templ, pc, uses, err;
 
-	
+for (var i = 0; i < WebsiteURL1.value.length; i++) {
+  x = 0;
+  if(WebsiteURL1[i].value.length > 0) {
+    
 
-
-
-	//ADAScore1.value = y;
-
-/*
-    if((area = parseInt(MissionArea1.value,10)) > 0){
-      xx += area;
+    
+    if((who = parseInt(WhoSAtRiskk[i].value,10)) > 0){
+      x += who;
     }
-    if((vis = parseInt(Visibility1.value,10)) > 0){
-      xx += vis;
+    if((area = parseInt(MissionArea1[i].value,10)) > 0){
+      x += area;
     }
-    if((templ = parseInt(Templates1.value,10)) > 0){
-      xx += templ;
+    if((vis = parseInt(Visibility1[i].value,10)) > 0){
+      x += vis;
     }
-    if((pc = parseInt(PageCountScore1.value,10)) > 0){
-      xx += pc;
+    if((templ = parseInt(Templates1[i].value,10)) > 0){
+      x += templ;
     }
-    if((uses = parseInt(TotalOfMonthlyUses1.value,10)) > 0){
-      xx += uses;
+    if((pc = parseInt(PageCountScore1[i].value,10))> 0){
+      x += pc;
     }
-    if((err = parseInt(Errors1.value,10)) > 0){
-      xx += err;
+    if((uses = parseInt(TotalOfMonthlyUses1[i].value,10)) > 0){
+      x += uses;
+    }
+    if((err = parseInt(Errors1[i].value,10)) > 0){
+      x += err;
     }
     
 
-  }*/
-  
- // ADAScore1.commentValue = WhoSAtRisk1.commentValue;
+  }
+  ADAScore1[i].value = x;
+}
+
+if(ScoringFieldsRepeat.itemRemoved ){
+  var x = 0;
+}
