@@ -2,7 +2,7 @@ var x, who, area, vis, templ, pc, uses, err;
 
 for (var i = 0; i < Website.value.length; i++) {
   x = 0;
-  if(Website.value.length > 0) {
+  if(Website[i].value.length > 0) {
     
   /*who = parseInt(WhoSAtRisk[i].value,10);
   area = parseInt(MissionArea[i].value,10);
