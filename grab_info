@@ -1,0 +1,36 @@
+/*member OrgName, resultSet, OrgID, Phone*/
+if (form.load){
+  TodaySDate.value = frevvo.currentDate();
+  
+  FirstName.value = _data.getParameter('subject.first.name');
+  LastName.value = _data.getParameter('subject.last.name');
+  EmailAddress.value = _data.getParameter('subject.email');
+  
+  
+ var x;
+ var username = _data.getParameter('subject.id');
+  
+eval ('x=' + http.get('http://localhost:8082/database/directory/empinfo?username=' + username));
+
+  if (x.resultSet.length > 0) {
+
+//EmployeeTitle2.value = x.resultSet[0].JobTitle;
+Department.value = x.resultSet[0].OrgName;
+    DepartmentID.value = x.resultSet[0].OrgID;
+    
+    var phone_check = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+    //write if check for phone
+    if(x.resultSet[0].Phone.match(phone_check)){
+      Telephone.value = x.resultSet[0].Phone;
+      Telephone.enabled = false;
+    }
+    else
+     {
+       Telephone.enabled = true;
+     }
+    
+
+    
+    
+  }
+}
