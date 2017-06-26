@@ -28,8 +28,6 @@ for (var i = 0; i < Website.value.length; i++) {
   }
   ADAScore[i].value = x;
 }
-
 if(ScoringFieldsRepeat.itemRemoved){
   var x = 0;
 }
-
