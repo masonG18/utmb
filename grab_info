@@ -28,8 +28,7 @@ Department.value = x.resultSet[0].OrgName;
     }
     else
      {
-       temp = x.resultSet[0].Phone;
-       temp =temp.replace(/\D/g, "");
+       
        
        Telephone.enabled = true;
      }
@@ -39,7 +38,17 @@ Department.value = x.resultSet[0].OrgName;
     
   }
 }
+//Got it! just add in a single - case
+  temp = Telephone.value;
+      temp =temp.replace(/\D/g, "");
+  if(temp.length > 6){
+      Telephone.value = temp.slice(0,3) + "-" + temp.slice(3,6)+ "-"+temp.slice(6,20);
+    }
+  else{
+      Telephone.value = temp;
+    }
 
+/*
 
   if(temp > 6){
   Telephone.value = temp.slice(0,3) +"-"+ temp.slice(3,6) + "-" + temp.slice(6,20);
@@ -52,7 +61,7 @@ else if(temp > 3){
 else if(temp > 0){
   Telephone.value = temp;
 }
-
+*/
 
 
 
