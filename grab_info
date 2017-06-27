@@ -17,15 +17,20 @@ eval ('x=' + http.get('http://localhost:8082/database/directory/empinfo?username
 //EmployeeTitle2.value = x.resultSet[0].JobTitle;
 Department.value = x.resultSet[0].OrgName;
     DepartmentID.value = x.resultSet[0].OrgID;
-    
+    var temp= 0;
     var phone_check = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
     //write if check for phone
+    
     if(x.resultSet[0].Phone.match(phone_check)){
+      
       Telephone.value = x.resultSet[0].Phone;
       Telephone.enabled = false;
     }
     else
      {
+       temp = x.resultSet[0].Phone;
+       temp =temp.replace(/\D/g, "");
+       
        Telephone.enabled = true;
      }
     
@@ -34,3 +39,35 @@ Department.value = x.resultSet[0].OrgName;
     
   }
 }
+
+
+  if(temp > 6){
+  Telephone.value = temp.slice(0,3) +"-"+ temp.slice(3,6) + "-" + temp.slice(6,20);
+  
+
+  }
+else if(temp > 3){
+  Telephone.value = temp.slice(0,3) +"-"+temp.slice(3,20);
+}
+else if(temp > 0){
+  Telephone.value = temp;
+}
+
+
+
+
+ 
+  /*
+  var fixNum = temp.value;
+  
+  for(var index = 1 ; index < Telephone.value.length; index++){
+    fixNum+= temp[index].value;
+    if(index%3 === 0){
+      fixNum+="-";
+    }
+    Telephone.value = fixNum;
+  }*/
+
+
+/*Telephone.value = temp.slice(0,3) +"-"+ temp.slice(3,6) + "-" +temp.slice(6,20);*/
+
