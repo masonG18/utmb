@@ -1,32 +1,25 @@
-/*var pattern = new RegExp('^(https?:\/\/)?'+ // protocol
-    '((([a-z\d]([a-z\d-]*[a-z\d])*)\.)+[a-z]{2,}|'+ // domain name
-    '((\d{1,3}\.){3}\d{1,3}))'+ // OR ip (v4) address
-    '(\:\d+)?(\/[-a-z\d%_.~+]*)*'+ // port and path
-    '(\?[;&a-z\d%_.~+=-]*)?'+ // query string
-    '(\#[-a-z\d_]*)?$','i'); // fragment locater*/
+/*
+This pattern is used to try to check that the url entered is valid. This version has had the least rate of failure, and only fails in some special cases that most likely won't occur. IF they do occur, it will be validating an incorrect address, which is much better than returning that a valid address is invalid. IF it fails, it should not be catostrophic; the user should still be able to continue, but with a technically incorrectly entered url.
+
+Of the 74 special-case tests I made, 2 failed:
+http://a.b--c.de/ -->returned valid when should be invalid
+http://www.foo.bar./ -->returned valid when should be invalid
+*/
 
 var pattern = /^(?:(?:https?|ftp):\/\/)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,}))\.?)(?::\d{2,5})?(?:[/?#]\S*)?$/i;
-  
 
-/*Of the 74 tests, these two failed:
-http://a.b--c.de/
-http://www.foo.bar./
-Counted as valid when should've been false
-*/  
-
-for(var i = 0 ; i < WebsiteURL1.value.length; i++){
-  if(WebsiteURL1.value.length > 0){
-    if(WebsiteURL1[i].value.match(pattern)){
-      WebsiteURL1[i].valid = true;
+//Loops through each entered url and checks its validity, signals the error message if an invalid url is entered.
+for(var i = 0 ; i < WebsiteURL.value.length; i++){
+  if(WebsiteURL.value.length > 0){
+    if(WebsiteURL[i].value.match(pattern)){
+      WebsiteURL[i].valid = true;
     }
     else
-     {
-      WebsiteURL1[i].valid = false;
-     }
-  
+    {
+      WebsiteURL[i].valid = false;
+    }
   }
 }
-
 
 /*
 SHOULD MATCH:
