@@ -1,60 +1,42 @@
 /*member OrgName, resultSet, OrgID, Phone*/
+var temp= 0;
 if (form.load){
   TodaySDate.value = frevvo.currentDate();
-  
   FirstName.value = _data.getParameter('subject.first.name');
   LastName.value = _data.getParameter('subject.last.name');
   EmailAddress.value = _data.getParameter('subject.email');
   
+  var x;
+  var username = _data.getParameter('subject.id');
   
- var x;
- var username = _data.getParameter('subject.id');
-  
-eval ('x=' + http.get('http://localhost:8082/database/directory/empinfo?username=' + username));
+  eval ('x=' + http.get('http://localhost:8082/database/directory/empinfo?username=' + username));
 
-  if (x.resultSet.length > 0) {
-
-//EmployeeTitle2.value = x.resultSet[0].JobTitle;
-Department.value = x.resultSet[0].OrgName;
+  if (x.resultSet.length > 0){
+    Department.value = x.resultSet[0].OrgName;
     DepartmentID.value = x.resultSet[0].OrgID;
-    var temp= 0;
+    
     var phone_check = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
-    //write if check for phone
     
     if(x.resultSet[0].Phone.match(phone_check)){
-      
       Telephone.value = x.resultSet[0].Phone;
       Telephone.enabled = false;
     }
-    else
-     {
-       
-       
-       Telephone.enabled = true;
-     }
-    
-
-    
-    
+    else{
+      Telephone.enabled = true;
+    }
   }
 }
-//Got it! just add in a single - case
+
+if(Telephone.enabled){
   temp = Telephone.value;
-      temp =temp.replace(/\D/g, "");
+  temp =temp.replace(/\D/g, "");
   if(temp.length > 6){
-      Telephone.value = temp.slice(0,3) + "-" + temp.slice(3,6)+ "-"+temp.slice(6,25);
-    }
+    Telephone.value = temp.slice(0,3) + "-" + temp.slice(3,6)+ "-"+temp.slice(6,25);
+  }
   else if(temp.length > 3){
     Telephone.value = temp.slice(0,3) + "-" + temp.slice(3,6);
-    }
+  }
   else{
-      Telephone.value = temp;
-    }
-
-
-
-
-
-
-/*Telephone.value = temp.slice(0,3) +"-"+ temp.slice(3,6) + "-" +temp.slice(6,20);*/
-
+    Telephone.value = temp;
+  }
+}
