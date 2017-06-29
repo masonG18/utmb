@@ -29,6 +29,6 @@ for (var i = 0; i < WebsiteURL1.value.length; i++) {
   }
   ADAScore1[i].value = x;
 }
-if(ScoringFieldsRepeat.itemRemoved ){
+if(Repeat.itemRemoved ){
   var x = 0;
 }
