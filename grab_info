@@ -8,15 +8,17 @@ if (form.load){
   
   var x;
   var username = _data.getParameter('subject.id');
-  
   eval ('x=' + http.get('http://localhost:8082/database/directory/empinfo?username=' + username));
 
+  //If the user info was grabbed successfully
   if (x.resultSet.length > 0){
     Department.value = x.resultSet[0].OrgName;
     DepartmentID.value = x.resultSet[0].OrgID;
     
+    //format pattern used to make sure that the number is accurate
     var phone_check = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
     
+    //Checks if a valid phone # was grabbed from database. If not, this opens the field so the user can enter one
     if(x.resultSet[0].Phone.match(phone_check)){
       Telephone.value = x.resultSet[0].Phone;
       Telephone.enabled = false;
@@ -27,11 +29,16 @@ if (form.load){
   }
 }
 
+//This is used when the number was invalid from the database. Here, the entered number is checked for validity
 if(Telephone.enabled){
   temp = Telephone.value;
+  
+  //removes illegal characters if they are entered
   temp =temp.replace(/\D/g, "");
+  
+  //These statements auto-insert dashes in the correct places depending upon if applicable to what is entered
   if(temp.length > 6){
-    Telephone.value = temp.slice(0,3) + "-" + temp.slice(3,6)+ "-"+temp.slice(6,25);
+    Telephone.value = temp.slice(0,3) + "-" + temp.slice(3,6) + "-"+ temp.slice(6,25);
   }
   else if(temp.length > 3){
     Telephone.value = temp.slice(0,3) + "-" + temp.slice(3,6);
