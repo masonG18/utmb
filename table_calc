@@ -1,17 +1,23 @@
 var total_index = 0;
 var x =0;
 if(form.load){
-  TableItem[1].enabled = false;
-  TableItem[1].deletable = false;
+  
+  Date[4].visible = false;
+  TableItem[4].enabled = false;
+  TableItem[4].deletable = false;
+ 
 }
+
+
 
 
 if(TableRepeat.itemAdded){
   var new_index = TableRepeat.itemIndex;
 
-  for(var a = 0; a < Date.value.length-1; a++){
+  for(var a = 0; a < Department.value.length-1; a++){
     TableItem[a].deletable = true;
     TableItem[a].enabled = true;
+    Date[a].visible = true;
     total_index++;
   }
   Charge[total_index].value = null;
@@ -22,17 +28,40 @@ if(TableRepeat.itemAdded){
     Charge[total_index].value=null;
     TableItem[new_index].enabled = false;
     TableItem[new_index].deletable = false;
+    Date[new_index].visible = false;
     new_index--;
     Charge[new_index].value = null;
     Note[new_index].value = null;
+    Date[new_index].visible = true;
   }
 }
 
 var ch = 0;
 var count = 0;
 
-for(var i = 0; i < Department.value.length-1; i++){ 
+for(var i = 0; i < Department.value.length-1; i++){
+  
+
+  
+  
     if(Department[i].value.length > 0){
+      
+ /*     
+        var x0, x1, x2;
+if (Charge[i].value > 0) {
+    var nStr = Charge[i].value.toFixed(2);
+    nStr += '';
+    x = nStr.split('.');
+    x1 = x[0];
+    x2 = x.length > 1 ? '.' + x[1] : '';
+    var rgx = /(\d+)(\d{3})/;
+    while (rgx.test(x1)) {
+ x1 = x1.replace(rgx, '$1' + ',' + '$2');
+    }
+    Charge[i].value = x1 + x2;
+}*/
+      
+      
       if((ch = Charge[i].value) > 0){
       x += ch;
       }
@@ -45,6 +74,12 @@ if(count > 0){
 }
 count = 0;
 x = 0;
+/*
+for(var i = 0; i < Department.value.length; i++){
+  if(Charge[i].value > 0){
+    Charge[i].value = Charge[i].value;
+  }
+}*/
 
 if(TableRepeat.itemRemoved){
   var x = 0;
