@@ -1,63 +1,46 @@
-var total_index = 0;
-var x =0;
-
-//Creates the 4 initial rows + bottom 'TOTAL' row with format.
-//This number can be changed to however many starting rows are wanted
+/*
+My row swapping allows for the use of a bottom row on the table that stores the TOTAL charged obtained from the sum of the inputted numbers. In Frevvo's javascript rule format, if a row is added using any of the '+' signs BESIDES the very bottom one, it adds the row without issue or need of moving values. If the bottom row '+' sign is clicked, the below code swaps the TOTAL row with the new row so that the table maintains consistency(keeping the TOTAL row last). If there is a way to remove the bottom row '+' sign while keeping the ones above, then most of this code will be irrelevant.
+*/
+var added_index;
+var sum =0;
+var max_len= Department.value.length-1;
+//Creates the bottom 'TOTAL' row with format.
 if(form.load){
-  Date[4].visible = false;
-  TableItem[4].enabled = false;
-  TableItem[4].deletable = false;
+  Date[max_len].visible = false;
+  TableItem[max_len].enabled = false;
+  TableItem[max_len].deletable = false;
 }
-
 //If an item is added, check which position and adjust location of TOTAL row
 if(TableRepeat.itemAdded){
-  var new_index = TableRepeat.itemIndex;
-
-  //Make sure that all rows above TOTAL row can be accessed no matter where new row was inserted
-  for(var a = 0; a < Department.value.length-1; a++){
-    TableItem[a].deletable = true;
-    TableItem[a].enabled = true;
-    Date[a].visible = true;
-    total_index++;
+  added_index = TableRepeat.itemIndex;
+  //If row added at very bottom, move its index before TOTAL row and empty values
+  if(added_index == max_len){
+    added_index--;
+    //Allow input and remove old TOTAL row's values
+    TableItem[added_index].enabled = true;
+    TableItem[added_index].deletable = true;
+    Date[added_index].visible = true;
+    Charge[added_index].value = null;
+    Note[added_index].value = null;
   }
-  
-  Charge[total_index].value = null;
-  total_index--;
-  
-  //If user tried to insert new row after TOTAL, move TOTAL down to bottom row
-  if(new_index > total_index){
-    Note[new_index].value = 'TOTAL';
-    Charge[total_index].value=null;
-    TableItem[new_index].enabled = false;
-    TableItem[new_index].deletable = false;
-    Date[new_index].visible = false;
-    new_index--;
-    Charge[new_index].value = null;
-    Note[new_index].value = null;
-    Date[new_index].visible = true;
-  }
+  //Move TOTAL row to the bottom in any scenario
+  TableItem[max_len].enabled = false;
+  TableItem[max_len].deletable = false;
+  Date[max_len].visible = false;
+  Charge[max_len].value = null;
+  Note[max_len].value = 'TOTAL';
 }
-
-var ch = 0;
-var count = 0;
-
+var temp = 0;
 //Grab all charge values to compute the total
 for(var i = 0; i < Department.value.length-1; i++){
     if(Department[i].value.length > 0){      
-      if((ch = Charge[i].value) > 0){
-      x += ch;
+      if((temp = Charge[i].value) > 0){
+        sum += temp;
       }
     }
-  count++;
 }
-
-//Make sure there is at least 1 value to store in TOTAL
-if(count > 0){
-    Charge[count].value = x;
-}
-count = 0;
+Charge[max_len].value = sum;
 x = 0;
-
 if(TableRepeat.itemRemoved){
   var x = 0;
 }
