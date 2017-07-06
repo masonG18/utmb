@@ -1,28 +1,30 @@
 var total_index = 0;
 var x =0;
+
+//Creates the 4 initial rows + bottom 'TOTAL' row with format.
+//This number can be changed to however many starting rows are wanted
 if(form.load){
-  
   Date[4].visible = false;
   TableItem[4].enabled = false;
   TableItem[4].deletable = false;
- 
 }
 
-
-
-
+//If an item is added, check which position and adjust location of TOTAL row
 if(TableRepeat.itemAdded){
   var new_index = TableRepeat.itemIndex;
 
+  //Make sure that all rows above TOTAL row can be accessed no matter where new row was inserted
   for(var a = 0; a < Department.value.length-1; a++){
     TableItem[a].deletable = true;
     TableItem[a].enabled = true;
     Date[a].visible = true;
     total_index++;
   }
+  
   Charge[total_index].value = null;
   total_index--;
   
+  //If user tried to insert new row after TOTAL, move TOTAL down to bottom row
   if(new_index > total_index){
     Note[new_index].value = 'TOTAL';
     Charge[total_index].value=null;
@@ -39,29 +41,9 @@ if(TableRepeat.itemAdded){
 var ch = 0;
 var count = 0;
 
+//Grab all charge values to compute the total
 for(var i = 0; i < Department.value.length-1; i++){
-  
-
-  
-  
-    if(Department[i].value.length > 0){
-      
- /*     
-        var x0, x1, x2;
-if (Charge[i].value > 0) {
-    var nStr = Charge[i].value.toFixed(2);
-    nStr += '';
-    x = nStr.split('.');
-    x1 = x[0];
-    x2 = x.length > 1 ? '.' + x[1] : '';
-    var rgx = /(\d+)(\d{3})/;
-    while (rgx.test(x1)) {
- x1 = x1.replace(rgx, '$1' + ',' + '$2');
-    }
-    Charge[i].value = x1 + x2;
-}*/
-      
-      
+    if(Department[i].value.length > 0){      
       if((ch = Charge[i].value) > 0){
       x += ch;
       }
@@ -69,17 +51,12 @@ if (Charge[i].value > 0) {
   count++;
 }
 
+//Make sure there is at least 1 value to store in TOTAL
 if(count > 0){
     Charge[count].value = x;
 }
 count = 0;
 x = 0;
-/*
-for(var i = 0; i < Department.value.length; i++){
-  if(Charge[i].value > 0){
-    Charge[i].value = Charge[i].value;
-  }
-}*/
 
 if(TableRepeat.itemRemoved){
   var x = 0;
