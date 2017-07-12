@@ -1,0 +1,38 @@
+.main-header h2{
+    font-size: 30px;
+}
+
+.sf_5cols_2_20 hr, .sf_5cols_4_20 hr {
+    margin-top: 45px; 
+}
+
+.sf_5cols_4_20 .sf_5cols_4in_20 {
+    margin-right: 5px;
+}
+
+.sf_5cols_3_20 hr {
+    margin-top: -4px;
+}
+
+h3.item-title {
+    font-size: 1.5em; 
+}
+
+.link-card-icons ul li .link-list-item-btn {
+   background-color:  #eee;
+   border: 1px darkgray solid;
+}
+
+.link-list-icons ul li .link-list-item-btn {
+    font-size: 1.2em; 
+}
+
+.link-list-icons ul li .link-list-item-btn:hover {
+    color: gray;
+    //border: 1px darkgray solid;
+    
+}
+
+.link-list-icons a:hover {
+    background-color: #eee;
+}
